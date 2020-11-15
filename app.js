@@ -1,9 +1,12 @@
 const express = require('express');
 const app = express();
+const morgan = require("morgan");
 
-const {getPost} = require('./routes/post')
+const getRoute = require('./routes/post')
 
-app.get('/', getPost)
+
+
+app.get('/', getRoute.getPost)
 
 const port = 3000;
 app.listen(port, () => { console.log(`A Node JS API listening on port: ${port}`)});
