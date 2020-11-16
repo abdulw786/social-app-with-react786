@@ -2,11 +2,20 @@ const express = require('express');
 const app = express();
 const morgan = require("morgan");
 
-const getRoute = require('./routes/post')
+const getRouters = require('./routes/post');
 
 
+//my own middleware
+const myOwnMiddleware = (req,res, next) => {
+    console.log("middleware appaied!!!");
+    next();
+}
+ // midlleware
+app.use(morgan("dev"));
+app.use(myOwnMiddleware); 
 
-app.get('/', getRoute.getPost)
+
+app.use('/', getRouters);
 
 const port = 3000;
 app.listen(port, () => { console.log(`A Node JS API listening on port: ${port}`)});
