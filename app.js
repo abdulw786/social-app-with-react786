@@ -5,16 +5,18 @@ const morgan = require("morgan");
 const dotenv = require ("dotenv");
 dotenv.config();
 
-db
-mongoose.connect(process.env.MONGO_URI)
-.then (() => console.log('db connected!')) 
+//db
+// mongoose.connect(process.env.MONGO_URI)
+// .then (() => console.log('db connected!')) 
 
-mongoose.connection.on('error', err => {
-    console.log(`DB connection error : ${err.message}`);
-})
+// mongoose.connection.on('error', err => {
+//     console.log(`DB connection error : ${err.message}`);
+// })
 
-// const uri = process.env.MONGO_URI;
-// mongoose.connect(uri, {
+
+
+
+// mongoose.connect(process.env.MONGO_URI, {
 //   useNewUrlParser: true,
 //   useUnifiedTopology: true
 // })
@@ -22,6 +24,18 @@ mongoose.connection.on('error', err => {
 //   console.log('DB connected')
 // })
 // .catch(err => console.log(err))
+
+
+//connect to db youtube way
+const connectDB = async() => {
+    await mongoose.connect(process.env.MONGO_URI,{
+        useNewUrlParser: true,
+        useUnifiedTopology: true
+    
+    });
+    console.log("db connected")
+}
+connectDB();
 
 //bring in routes 
 const getRouters = require('./routes/post');
